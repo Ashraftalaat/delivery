@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:delivery/core/class/statusrequest.dart';
 import 'package:delivery/core/function/handlingdata.dart';
 import 'package:delivery/data/datasource/remote/orders/details_data.dart';
+import 'package:delivery/data/model/cart.dart';
+
 import 'package:delivery/data/model/orders/orders.dart';
 
 import 'package:get/get.dart';
@@ -14,12 +16,12 @@ class OrdersDetailsController extends GetxController {
 
   OrdersDetailsData ordersDetailsData = OrdersDetailsData(Get.find());
   // لتخزين الداتا اللي هتيجي من Backend
- // List<CartModel> data = [];
+  List<CartModel> data = [];
   late StatusRequest statusRequest;
 
   Completer<GoogleMapController>? completercontroller;
   List<Marker> markers = [];
-  late CameraPosition cameraPosition;
+   CameraPosition? cameraPosition;
   double? lat;
   double? long;
 
@@ -27,13 +29,13 @@ class OrdersDetailsController extends GetxController {
     if (ordersModel.ordersType == 0) {
       cameraPosition = CameraPosition(
         target: LatLng(double.parse(ordersModel.addressLat.toString()),
-            double.parse(ordersModel.addressLat.toString())),
+            double.parse(ordersModel.addressLong.toString())),
         zoom: 12.4746,
       );
       markers.add(Marker(
           markerId: const MarkerId("1"),
           position: LatLng(double.parse(ordersModel.addressLat.toString()),
-              double.parse(ordersModel.addressLat.toString()))));
+              double.parse(ordersModel.addressLong.toString()))));
     }
   }
 
@@ -57,7 +59,7 @@ class OrdersDetailsController extends GetxController {
     if (StatusRequest.success == statusRequest) {
       if (response['status'] == "success") {
         List listdata = response['data'];
-      //  data.addAll(listdata.map((e) => CartModel.fromJson(e)));
+        data.addAll(listdata.map((e) => CartModel.fromJson(e)));
       } else {
         // لو مفيش بيانات
         statusRequest = StatusRequest.failure;

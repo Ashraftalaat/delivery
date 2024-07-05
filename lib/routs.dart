@@ -18,6 +18,7 @@ import 'package:delivery/view/screen/language.dart';
 import 'package:delivery/view/screen/orders/archive.dart';
 import 'package:delivery/view/screen/orders/details.dart';
 import 'package:delivery/view/screen/orders/pending.dart';
+import 'package:delivery/view/screen/orders/tracking.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
 
@@ -69,6 +70,8 @@ List<GetPage<dynamic>>? routes = [
   GetPage(name: AppNamesRouts.detailsorder, page: () => const OrdersDetails()),
   GetPage(
       name: AppNamesRouts.archiveorder, page: () => const OrdersArchiveView()),
+  GetPage(name: AppNamesRouts.tracking, page: () => const OrdersTracking()),
+
 
   // Address
   // GetPage(name: AppNamesRouts.addressview, page: () => const AddressView()),

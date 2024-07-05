@@ -33,6 +33,8 @@ class AppNamesRouts {
   static const String pendingorder = "/pending";
   static const String archiveorder = "/archive";
   static const String detailsorder = "/details";
+  static const String tracking = "/tracking";
+
 
   // Address
   static const String addressview = "/addressview";

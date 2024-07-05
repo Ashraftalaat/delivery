@@ -1,6 +1,8 @@
 import 'package:delivery/controller/orders/details_controller.dart';
 import 'package:delivery/core/class/handingdataview.dart';
 import 'package:delivery/core/constant/color.dart';
+import 'package:delivery/core/constant/routs.dart';
+import 'package:delivery/core/shared/custombutton.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -29,8 +31,8 @@ class OrdersDetails extends StatelessWidget {
                             Container(
                               padding: const EdgeInsets.all(10),
                               child: Table(
-                                children: const [
-                                  TableRow(
+                                children:  [
+                                   const TableRow(
                                     children: [
                                       Text(
                                         "Item",
@@ -52,25 +54,25 @@ class OrdersDetails extends StatelessWidget {
                                       )
                                     ],
                                   ),
-                                  // ...List.generate(
-                                  //  // controller.data.length,
-                                  //   (index) => TableRow(
-                                  //     children: [
-                                  //       Text(
-                                  //         "${controller.data[index].itemsName}",
-                                  //         textAlign: TextAlign.center,
-                                  //       ),
-                                  //       Text(
-                                  //         "${controller.data[index].itemsCount}",
-                                  //         textAlign: TextAlign.center,
-                                  //       ),
-                                  //       Text(
-                                  //         "${controller.ordersModel.ordersPrice}\$",
-                                  //         textAlign: TextAlign.center,
-                                  //       ),
-                                  //     ],
-                                  //   ),
-                                  // ),
+                                  ...List.generate(
+                                    controller.data.length,
+                                    (index) => TableRow(
+                                      children: [
+                                        Text(
+                                          "${controller.data[index].itemsName}",
+                                          textAlign: TextAlign.center,
+                                        ),
+                                        Text(
+                                          "${controller.data[index].countitems}",
+                                          textAlign: TextAlign.center,
+                                        ),
+                                        Text(
+                                          "${controller.ordersModel.ordersPrice}\$",
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
                                   // TableRow(
                                   //   children: [
                                   //     Text(
@@ -140,12 +142,12 @@ class OrdersDetails extends StatelessWidget {
                       if (controller.ordersModel.ordersType == 0)
                         Card(
                           child: Container(
-                            height: 400,
+                            height: 300,
                             padding: const EdgeInsets.all(15),
                             child: GoogleMap(
                               mapType: MapType.normal,
                               markers: controller.markers.toSet(),
-                              initialCameraPosition: controller.cameraPosition,
+                              initialCameraPosition: controller.cameraPosition!,
                               onMapCreated:
                                   (GoogleMapController controllermap) {
                                 controller.completercontroller!
@@ -153,7 +155,19 @@ class OrdersDetails extends StatelessWidget {
                               },
                             ),
                           ),
-                        )
+                        ),
+                                        SizedBox(
+                  height: 10,
+                ),
+                CustomButton(
+                  text: "Tracking",
+                  onPressed: () {
+                    Get.toNamed(
+                      AppNamesRouts.tracking,
+                      arguments: {"ordermodel": controller.ordersModel},
+                    );
+                  },
+                ),
                     ],
                   ),
                 )),

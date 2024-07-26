@@ -2,6 +2,7 @@ import 'package:delivery/view/screen/home.dart';
 import 'package:delivery/view/screen/notification.dart';
 import 'package:delivery/view/screen/orders/accepted.dart';
 import 'package:delivery/view/screen/orders/pending.dart';
+import 'package:delivery/view/screen/settings.dart';
 import 'package:delivery/view/screen/test_view.dart';
 
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class HomeScreenControllerImp extends HomeScreenController {
     const OrdersPending(),
      const OrdersAccepted(),
     // const OffersView(),
-      const TestView(),
+      const Setting(),
   ];
 
   List bottonAppBar = [
